@@ -15,7 +15,7 @@ PORT = config.get('Server', 'port')
 ACCESSLOG = config.get('Server', 'logfile')
 
 
-PASSWORDS = ['motherfucker', 'saberfilmsadmin', 'urmom']
+PASSWORDS = []
 
 app = Flask(__name__) # CREATE THE FLASK APP VARIABLE =- =- =- =- =- =- =- =- =- =- =- =- =- =- 
 
