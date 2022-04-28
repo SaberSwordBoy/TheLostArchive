@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block title %}Sponsors | The Lost Archive{% endblock %}
+{%block meta_title %}Sponsors | The Lost Archive{% endblock %}
+{%block meta_desc %}Sponsors of TLA. Want to join? Go to our GoFundMe!{% endblock %}
+{%block header %}THE LOST ARCHIVE{% endblock %}
+
+{% block content %}
+
+<article>
+    <h2 class='heading' >These amazing sponsors help make TLA</h2>
+    <div class="container-flexbox">
+
+    {% for sponsor in sponsors %}
+        <div class="sponsor">
+            <h3 class="thing1">{{ sponsor['name']}}</h3>
+            <p class="thing2">{{ sponsor['desc'] }}</p>
+            <img src="{{ sponsor['pic'] }}" width="200px" height="200px">
+        </div>
+    {% endfor %}
+    </div>
+</article>
+
+<br>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{%block title %}People | The Lost Archive{% endblock %}
+{%block meta_title %}People of The Lost Archive{% endblock %}
+{%block meta_desc %}All the people that are working on this film!{% endblock %}
+{%block header %}THE L0ST ARCHIVE{% endblock %}
+
+{% block content %}
+
+<h2 class='title2'>People of TLA</h2>
+
+
+{% for person in people %}
+<div class="person-about">
+    <a href="/person/{{ person['link']}}">
+        <h2 class='heading'>{{person['Name'] }}</h2>
+    </a>
+    <p class="description">
+        {% for role in person['Roles'] %}
+        {{ role }}<br>
+        {% endfor %}
+    </p>
+</div>
+{% endfor %} 
+
+{% endblock %}  

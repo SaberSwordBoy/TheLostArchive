@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{%block title %}Get Involved | The Lost Archive{% endblock %}
+{%block meta_title %}Get Involved | The Lost Archive{% endblock %}
+{%block meta_desc %}Want to act in TLA? We need extras and background actors!{% endblock %}
+{%block header %}YOUR LOST ARCHIVE{% endblock %}
+
+{% block content %}
+
+<article>
+    <h2 class='heading'>"Star" In the Lost Archive</h2>
+    <p>
+        <br> Do you want to be in The Lost Archive?
+        <br> Currently, we need extras and background actors!
+        <br> Simply enter your information below, and one of our team members will contact you. 
+        <br> We might ask you some questions, and then get back to you if we think you will work for any of the roles. 
+        <br> Head on over to <a href="{{ url_for('contact') }}">the contact page</a> to get started!
+    </p>
+</article>
+
+<form action="/getinvolved" method="post">
+
+        <label for="Name">Name</label><br>
+        <input type="text" id="Name" name="Name" value="John Doe"><br><br>
+
+        <label for="Email">Email Address</label><br>
+        <input type="text" id="Email" name="Email" value="john@example.com"><br><br>
+
+        <input type="submit" value="Submit">
+</form>
+
+<br>
+{% endblock %}

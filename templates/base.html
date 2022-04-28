@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <meta property="og:title" content="{% block meta_title%}{% endblock %}">
+        <meta property="og:image" content="https://cdn.discordapp.com/attachments/954158097012781066/960996453101219891/unknown.png">
+        <meta property="og:description" content="{% block meta_desc %}{% endblock %}">
+        <meta property="og:url" content="https://thelostarchive.cf/">
+        <meta property="og:type" content="article">
+
+        <meta name="description" content="Official website for The Lost Archive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+        <link rel="shortcut icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+        <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+        <link rel="manifest" href="/site.webmanifest">
+	<meta name="google-site-verification" content="0Cf9o0Pqvt0rV7RO8FkF_QzwmZgl2uwq1Tj9WKRuGGg" />
+
+    </head>
+    <body>
+        
+        <h1 class='title'>{% block header %}{% endblock %}</h1>
+
+        <input type="checkbox" id="active">
+        <label for="active" class="menu-btn"><span></span></label>
+        <label for="active" class="close"></label>
+        <div class="wrapper">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/people">People</a></li>
+                <li><a href="/bts">BTS</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/sponsors">Sponsors</a></li>
+            </ul>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+	<br>
+	<br>
+	<br>
+        
+        <img class="dagobah" src="https://media.discordapp.net/attachments/954158097012781066/960562148411576330/n0pb8bpdgnjqmt31p9lrvkmrsq-aa79d268d2480d7c647c7451900dda9a.png">
+        <p class='footer'>© Copyright 2020 by <strong>Saber Films</strong> | saberfilmsproductions@gmail.com</p>
+        <script></script>
+    </body>
+</html>

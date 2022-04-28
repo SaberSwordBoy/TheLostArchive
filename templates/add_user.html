@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{%block title %}Add User{% endblock %}
+{%block header %}THE NEW PERSON{% endblock %}
+
+{% block content %}
+
+<article>
+    <h2 class='heading'>Add a new person</h2>
+    <p>
+        Enter the information of the new person and click submit. They will be added to the /people page
+    </p>
+
+    <form action="/submit" method="post">
+
+        <label for="Name">Full Name</label><br>
+        <input type="text" id="Name" name="Name" value="John Doe"><br><br>
+
+        <label for="Age">Age: </label><br>
+        <input type="text" id="Age" name="Age" value="32"><br><br>
+
+        <label for="Roles">Roles: (Seperated by comma)</label><br>
+        <input type="text" id="Roles" name="Roles" value="Actor, Editor"><br><br>
+
+        <label for="Picture">Link to pfp: (leave blank for none)</label><br>
+        <input type="text" id="Picture" name="Picture"><br><br>
+
+        <label for="socials">Socials: (Seperated by comma, full url)</label><br>
+        <input type="text" id="socials" name="socials"><br><br>
+
+        <label for="About">About me: </label><br>
+        <textarea id="About" name="About" rows="4" cols="50"></textarea><br><br>
+
+        <label for="password">Enter the password: </label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</article>
+
+<img class='tiefighters'
+    src='https://cdn.discordapp.com/attachments/954158097012781066/960566221336621086/5bc4ce71b6e2f-c97393aff567393e66d45946be6c66e1.png'>
+<img class='awing'
+    src="https://cdn.discordapp.com/attachments/954158097012781066/960566601315401778/anakin-skywalker-star-wars-a-wing-x-wing-starfighter-y-wing-admiral-ackbar-ship-954b85b63ccb45e58a2e83a6a6084fc4.png">
+
+<br>
+<br>
+<br>
+
+{% endblock %}

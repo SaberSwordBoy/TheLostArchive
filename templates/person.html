@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{%block title %}{{ person['Name'] }}{% endblock %}
+{%block meta_title %}{{ person['Name'] }} | The Lost Archive{% endblock %}
+{%block meta_desc %}Want to know more about {{ person['Name']}}?{% endblock %}
+<meta property="og:image" content="{{ person['Picture'] }}">
+{%block header %}THE LOST ARCHIVE{% endblock %}
+
+{% block content %}
+
+
+<article class="person-about">
+    <h2 class='heading'>{{ person['Name'] }}</h2>
+    {% if picture %}
+        <img src="{{ person['Picture'] }}" alt="{{ person['Name'] }}" class='pfp'>
+    {% endif %}
+    <p class='description'>
+        <span class="thing1">About:<br></span>{{ person['About'] }}
+    </p>
+    <p>
+        <br><span class="thing1">Role(s):<br></span>
+        {% for role in person['Roles'] %}
+        {{ role }}<br>
+        {% endfor %}
+    </p>
+
+    <p>
+        <br><span class="thing1">Socials:<br></span>
+        {% for link in person['socials'] %}
+
+        <a href="{{ link }}">{{ link.split('/')[2].split('.')[0].title() }}</a><br>
+        {% endfor %}
+    </p>
+</article>
+
+{% endblock %} 

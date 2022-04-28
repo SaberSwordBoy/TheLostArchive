@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{%block title %}Contact | The Lost Archive{% endblock %}
+{%block meta_title %}Contact us | The Lost Archive{% endblock %}
+{%block meta_desc %}Get in touch with Saber Films!{% endblock %}
+{%block header %}THE LOST ARCHIVE{% endblock %}
+
+{% block content %}
+
+<article>
+    <h2 class='heading'>Email Us</h2>
+    <p>
+        Enter your information below and click submit. We will get back to you as soon as possible. 
+    </p>
+
+    <form action="/email" method="post">
+
+        <label for="Name">Name</label><br>
+        <input type="text" id="Name" name="Name" value="John Doe"><br><br>
+
+        <label for="Email">Email Address</label><br>
+        <input type="text" id="Email" name="Email" value="john@example.com"><br><br>
+
+        <label for="Email">Message</label><br>
+        <textarea id="Message" name="Message" cols="40" rows="20"></textarea><br><br>
+
+        <input type="submit" value="Submit" class="donate-button">
+
+    </form>
+</article>
+
+<article>
+    <h2 class='heading'>Contact Us</h2>
+    <p>
+        <span class="thing1"><a href="https://youtube.com/c/saberfilms/">Our Youtube</a></span>
+        <br>
+        <span class="thing1"><a href="https://tiktok.com/@saberfilms">Our TikTok</a></span>
+        <br>
+        <span class="thing1"><a href="https://vimeo.com/user102199559">Our Vimeo</a></span>
+        <br>
+        <br>
+        <span class="thing1">Email us at saberfilmsproductions@gmail.com</span>
+    </p>
+</article>
+
+<img class='tiefighters' src='https://cdn.discordapp.com/attachments/954158097012781066/960566221336621086/5bc4ce71b6e2f-c97393aff567393e66d45946be6c66e1.png'> 
+<img class='awing' src="https://cdn.discordapp.com/attachments/954158097012781066/960566601315401778/anakin-skywalker-star-wars-a-wing-x-wing-starfighter-y-wing-admiral-ackbar-ship-954b85b63ccb45e58a2e83a6a6084fc4.png">
+
+{% endblock %} 
