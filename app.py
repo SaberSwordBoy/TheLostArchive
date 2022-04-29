@@ -1,7 +1,6 @@
 from ipaddress import ip_address
 from flask import Flask, render_template, request, redirect, send_file
-import smtplib, ssl
-from twilio.rest import Client
+import smtplib
 import configparser
 import json
 import os
