@@ -17,17 +17,6 @@ PASSWORDS = [config.get("Server", 'admin_password')]
 
 app = Flask(__name__) # CREATE THE FLASK APP VARIABLE =- =- =- =- =- =- =- =- =- =- =- =- =- =- 
 
-"""
-MAIL_SERVER   = config.get("Smtp", "mail_server")
-MAIL_PORT     = config.get("Smtp", "mail_port")
-MAIL_USER     = config.get("Smtp", "mail_username")
-MAIL_PASSWORD = config.get("Smtp", "mail_password")
-"""
-
-account_sid  = "AC84d8ae465982b5853765f6622fa360ad"
-auth_token   = "bdf36251a656f7d9cea7cf38d068131b"
-client       = Client(account_sid, auth_token)
-
 def get_importance(file: str) -> int:
     with open('people/' + file, 'r') as f:
         print(f"{file} - {json.loads(f.read())['importance']}")
