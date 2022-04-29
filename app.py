@@ -218,13 +218,14 @@ def downloads(name):
             f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Downloads/{name}\n"
         )
     if "pdf" in name:
-        return send_file(f"/root/saberfilmsapp/downloads/{name}")
-    elif "jpg" in name:
-        return send_file(f"/root/saberfilmsapp/downloads/{name}",
-                         attachment_filename="TLA_Image.jpg")
-    return send_file(f"/root/saberfilmsapp/downloads/{name}",
-                     as_attachment=True)
-
+        return send_file(
+          f"/root/saberfilmsapp/downloads/{name}"
+        )
+    if "jpg" in name:
+        return send_file(
+            f"/root/saberfilmsapp/downloads/{name}", attachment_filename="TLA_Image.jpg"
+        )
+    return send_file(f"/root/saberfilmsapp/downloads/{name}", as_attachment=True)
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
