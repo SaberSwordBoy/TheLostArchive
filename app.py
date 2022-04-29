@@ -15,9 +15,7 @@ PORT = config.get("Server", "port")
 ACCESSLOG = config.get("Server", "logfile")
 PASSWORDS = [config.get("Server", "admin_password")]
 
-app = Flask(
-    __name__
-)  # CREATE THE FLASK APP VARIABLE =- =- =- =- =- =- =- =- =- =- =- =- =- =-
+app = Flask(__name__)
 
 
 def get_importance(file: str) -> int:
@@ -168,21 +166,7 @@ def get_involved():
         return render_template("getinvolved.html")
 
     if request.method == "POST":
-        data = request.form
-
-        s = smtplib.SMTP("smtp.gmail.com", 587)
-        s.starttls()
-        # Authentication
-        s.login("sabercodeboy@gmail.com", "saber-films")
-
-        message = data
-
-        # sending the mail
-        s.sendmail("sabercodeboy@gmail.com", "sabercodeboy@gmail.com", message)
-
-        # terminating the session
-        s.quit()
-
+        pass
 
 @app.route("/sponsors")
 def sponsors():
