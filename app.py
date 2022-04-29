@@ -207,9 +207,8 @@ def get_picture(name):
         f.write(
             f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Picture/{name}\n"
         )
-    return send_file(
-        f"/root/saberfilmsapp/static/images/{name}", attachment_filename="img.jpg"
-    )
+    return send_file(f"/root/saberfilmsapp/static/images/{name}",
+                     attachment_filename="img.jpg")
 
 
 @app.route("/downloads/<name>")
@@ -221,10 +220,10 @@ def downloads(name):
     if "pdf" in name:
         return send_file(f"/root/saberfilmsapp/downloads/{name}")
     if "jpg" in name:
-        return send_file(
-            f"/root/saberfilmsapp/downloads/{name}", attachment_filename="TLA_Image.jpg"
-        )
-    return send_file(f"/root/saberfilmsapp/downloads/{name}", as_attachment=True)
+        return send_file(f"/root/saberfilmsapp/downloads/{name}",
+                         attachment_filename="TLA_Image.jpg")
+    return send_file(f"/root/saberfilmsapp/downloads/{name}",
+                     as_attachment=True)
 
 
 @app.route("/admin", methods=["GET", "POST"])
