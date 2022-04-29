@@ -220,7 +220,7 @@ def downloads(name):
         )
     if "pdf" in name:
         return send_file(f"/root/saberfilmsapp/downloads/{name}")
-    elif "jpg" in name:
+    if "jpg" in name:
         return send_file(
             f"/root/saberfilmsapp/downloads/{name}", attachment_filename="TLA_Image.jpg"
         )
