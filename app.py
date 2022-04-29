@@ -168,6 +168,7 @@ def get_involved():
     if request.method == "POST":
         pass
 
+
 @app.route("/sponsors")
 def sponsors():
     with open(ACCESSLOG, "a") as f:
