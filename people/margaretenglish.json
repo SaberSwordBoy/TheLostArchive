@@ -1,1 +1,9 @@
-{"Name": "Margaret English", "Age": "16", "Roles": ["Assistant Director"], "Picture": "", "socials": [""], "About": "", "password": "", "link": "margaretenglish"}
+{"Name": "Margaret English", 
+ "Age": "16", 
+ "Roles": ["Assistant Director"], 
+ "Picture": "", 
+ "socials": [], 
+ "About": "", 
+ "password": "", 
+ "link": "margaretenglish"
+}
