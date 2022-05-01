@@ -1,10 +1,10 @@
 {
     "Name": "Ken Casamento",
-    "Roles": ["Drone Cameras", "Propmaking"],
+    "Roles": ["Propmaking","Aerial Cinematographer"],
     "About": "",
     "Picture": "",
     "Age": 49,
     "link": "kencasamento",
-    "socials": [],
+    "socials": ["https://instagram.com/kcolonel1030"],
     "importance": 3
 }
