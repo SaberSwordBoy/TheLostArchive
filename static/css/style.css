@@ -8,6 +8,10 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
 }
+@font-face {
+  font-family: StarJedi;
+  src: url("https://thelostarchive.cf/downloads/StarJedi-DGRW.ttf");
+}
 
 .title {
     color: yellow;
@@ -145,8 +149,12 @@ article a {
 
 @media only screen and (max-width: 750px) {
 
+    .donate-button {
+      padding: 100px;
+    }
+
     .person-about{
-      width: 100%;
+      width: 85%;
     }
 
     iframe {
@@ -346,7 +354,7 @@ input[type="checkbox"]{
 }
 .donate-button:hover {
   color: #000;
-  background: rgb(255, 218, 87);
+  background: rgb(137, 255, 87);
 }
 
 label {

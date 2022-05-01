@@ -206,8 +206,15 @@ def downloads(name):
     if "jpg" in name:
         return send_file(f"/root/saberfilmsapp/downloads/{name}",
                          attachment_filename="TLA_Image.jpg")
+    if "ttf" in name:
+        return send_file(f"/root/saberfilmsapp/downloads/{name}", as_attachment=False)
+
     return send_file(f"/root/saberfilmsapp/downloads/{name}",
                      as_attachment=True)
+
+@app.route('/plot')
+def plot():
+    return render_template("plot.html")
 
 
 @app.route("/admin", methods=["GET", "POST"])

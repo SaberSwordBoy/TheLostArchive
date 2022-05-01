@@ -8,12 +8,13 @@
 
 {% block content %}
 
-
 <article class="person-about">
     <h2 class='heading'>{{ person['Name'] }}</h2>
+
     {% if picture %}
         <img src="{{ person['Picture'] }}" alt="{{ person['Name'] }}" class='pfp'>
     {% endif %}
+
     <p class='description'>
         <span class="thing1">About:<br></span>{{ person['About'] }}
     </p>
@@ -31,6 +32,8 @@
         <a href="{{ link }}">{{ link.split('/')[2].split('.')[0].title() }}</a><br>
         {% endfor %}
     </p>
+    <a href="/people" class="donate-button"><- Back</a>
+    <br>
 </article>
 
 {% endblock %} 
