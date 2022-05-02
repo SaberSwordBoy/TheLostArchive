@@ -42,28 +42,16 @@ def password_prompt(message):
 @app.route("/index")
 @app.route("/home")
 def index():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Index\n"
-        )
     return render_template("index.html")
 
 
 @app.route("/about")
 def about():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - About\n"
-        )
     return render_template("about.html")
 
 
 @app.route("/people")
 def cast():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - People\n"
-        )
     people = []
     for _, _, files in os.walk("people"):
 
@@ -76,10 +64,6 @@ def cast():
 
 @app.route("/person/<name>")
 def person(name):
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Person/{name}\n"
-        )
     picture = False
     data = {"Name": "ERROR"}
     try:
@@ -98,29 +82,16 @@ def person(name):
 
 @app.route("/bts")
 def behind_the_scenes():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Bts\n"
-        )
     return render_template("bts.html")
 
 
 @app.route("/contact")
 def contact():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Contact\n"
-        )
     return render_template("contact.html")
 
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit_user():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Submit\n"
-        )
-
     if request.method == "POST":
         data = request.form
 
@@ -157,10 +128,6 @@ def send_email():
 
 @app.route("/getinvolved", methods=["GET", "POST"])
 def get_involved():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Getinvolved\n"
-        )
 
     if request.method == "GET":
         return render_template("getinvolved.html")
@@ -170,10 +137,6 @@ def get_involved():
 
 @app.route("/sponsors")
 def sponsors():
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Sponsors\n"
-        )
 
     sponsors = []
     for _, _, files in os.walk("sponsors"):
@@ -187,20 +150,12 @@ def sponsors():
 
 @app.route("/picture/<name>")
 def get_picture(name):
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Picture/{name}\n"
-        )
     return send_file(f"/root/saberfilmsapp/static/images/{name}",
                      attachment_filename="img.jpg")
 
 
 @app.route("/downloads/<name>")
 def downloads(name):
-    with open(ACCESSLOG, "a") as f:
-        f.write(
-            f"{datetime.now().strftime('%m/%d/%Y, %H:%M:%S')} | {request.method}: {request.remote_addr} - Downloads/{name}\n"
-        )
     if "pdf" in name:
         return send_file(f"/root/saberfilmsapp/downloads/{name}")
     if "jpg" in name:
