@@ -183,6 +183,7 @@ def get_involved():
     if request.method == "POST":
         pass
 
+
 @app.route("/sponsors")
 def sponsors():
 
