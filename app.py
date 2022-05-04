@@ -13,7 +13,7 @@ config.read("/root/saberfilmsapp/config/config.ini")
 HOST = config.get("Server", "ip")
 PORT = config.get("Server", "port")
 ACCESSLOG = config.get("Server", "logfile")
-PASSWORDS = [config.get("Server", "admin_password")]
+PASSWORDS = config.get("Server", "admin_password").split(',')
 
 app = Flask(__name__)
 
@@ -116,7 +116,44 @@ def submit_user():
 
     if request.method == "GET":
         return render_template("add_user.html")
+@app.route('/update', methods=['GET', 'POST'])
+@app.route("/update/<name>", methods=["GET", "POST"])
+def update_user(name=None):
+    if request.method == "POST":
+        data = request.form
 
+        if data["password"] not in PASSWORDS:
+            return "You do not have permission to do that!"
+
+        str_json = json.dumps(data)
+        data = json.loads(str_json)
+
+        data["link"] = "".join(data["Name"].split(" ")).lower()
+        if data.get('socials') is not None: 
+            data["socials"] = data["socials"].split(",")
+        data["Roles"] = data["Roles"].split(",")
+        data["password"] = ""
+
+        with open(f"people/{data['link']}.json", "w") as file:
+            json.dump(data, file)
+
+        return redirect("/people")
+    
+    if request.method == "GET":
+
+        try:
+            with open(f"people/{name}.json", "r") as f:
+                data = json.load(f)
+                if data.get("Picture") != "":
+                    picture = True
+        except FileNotFoundError:
+            data = {
+                "Name": "ERROR",
+                "About": "This Person does not exist.",
+                "Roles": ["Error"],
+            }
+
+        return render_template('edituser.html', person=data)
 
 @app.route("/email", methods=["GET", "POST"])
 def send_email():

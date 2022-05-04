@@ -9,7 +9,9 @@
 {% block content %}
 
 <article class="person-about">
-    <h2 class='heading'>{{ person['Name'] }}</h2>
+    <a href="https://thelostarchive.cf/update/{{ person['link'] }}" class="hidden">
+        <h2 class='heading'>{{ person['Name'] }}</h2>
+    </a>
 
     {% if picture %}
         <img src="{{ person['Picture'] }}" alt="{{ person['Name'] }}" class='pfp'>
