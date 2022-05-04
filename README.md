@@ -3,8 +3,9 @@ The Lost Archive! https://thelostarchive.cf
 
 ### Untracked directories and files:
 
-gunicorn.conf.py  
-wsgi.py  
-config/config.ini  
+config/config.ini
+logs/access.log
+logs/gunicorn.access.log
+logs/clean.py
     
   
