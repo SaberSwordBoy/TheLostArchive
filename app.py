@@ -13,7 +13,7 @@ config.read("/root/saberfilmsapp/config/config.ini")
 HOST = config.get("Server", "ip")
 PORT = config.get("Server", "port")
 ACCESSLOG = config.get("Server", "logfile")
-PASSWORDS = config.get("Server", "admin_password").split(',')
+PASSWORDS = config.get("Server", "admin_password").split(",")
 
 app = Flask(__name__)
 
@@ -86,13 +86,18 @@ def behind_the_scenes():
     for _, _, files in os.walk("bts"):
 
         for file in sort_files(files):
-            images.append({"filename": file, "url": f"https://thelostarchive.cf/bts/{file}"})
-                
-    return render_template("bts.html",images=images)
+            images.append({
+                "filename": file,
+                "url": f"https://thelostarchive.cf/bts/{file}"
+            })
+
+    return render_template("bts.html", images=images)
+
 
 @app.route("/bts/<name>")
 def btsdownloads(name):
-    return send_file(f'/root/saberfilmsapp/bts/{name}')
+    return send_file(f"/root/saberfilmsapp/bts/{name}")
+
 
 @app.route("/contact")
 def contact():
@@ -127,7 +132,7 @@ def submit_user():
         return render_template("add_user.html")
 
 
-@app.route('/update', methods=['GET', 'POST'])
+@app.route("/update", methods=["GET", "POST"])
 @app.route("/update/<name>", methods=["GET", "POST"])
 def update_user(name=None):
     if request.method == "POST":
@@ -140,7 +145,7 @@ def update_user(name=None):
         data = json.loads(str_json)
 
         data["link"] = "".join(data["Name"].split(" ")).lower()
-        if data.get('socials') is not None: 
+        if data.get("socials") is not None:
             data["socials"] = data["socials"].split(",")
         data["Roles"] = data["Roles"].split(",")
         data["password"] = ""
@@ -149,7 +154,7 @@ def update_user(name=None):
             json.dump(data, file)
 
         return redirect("/people")
-    
+
     if request.method == "GET":
 
         try:
@@ -164,7 +169,8 @@ def update_user(name=None):
                 "Roles": ["Error"],
             }
 
-        return render_template('edituser.html', person=data)
+        return render_template("edituser.html", person=data)
+
 
 @app.route("/email", methods=["GET", "POST"])
 def send_email():
@@ -211,12 +217,14 @@ def downloads(name):
         return send_file(f"/root/saberfilmsapp/downloads/{name}",
                          attachment_filename="TLA_Image.jpg")
     if "ttf" in name:
-        return send_file(f"/root/saberfilmsapp/downloads/{name}", as_attachment=False)
+        return send_file(f"/root/saberfilmsapp/downloads/{name}",
+                         as_attachment=False)
 
     return send_file(f"/root/saberfilmsapp/downloads/{name}",
                      as_attachment=True)
 
-@app.route('/plot')
+
+@app.route("/plot")
 def plot():
     return render_template("plot.html")
 
