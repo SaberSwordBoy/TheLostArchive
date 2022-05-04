@@ -82,8 +82,17 @@ def person(name):
 
 @app.route("/bts")
 def behind_the_scenes():
-    return render_template("bts.html")
+    images = []
+    for _, _, files in os.walk("bts"):
 
+        for file in sort_files(files):
+            images.append({"filename": file, "url": f"https://thelostarchive.cf/bts/{file}"})
+                
+    return render_template("bts.html",images=images)
+
+@app.route("/bts/<name>")
+def btsdownloads(name):
+    return send_file(f'/root/saberfilmsapp/bts/{name}')
 
 @app.route("/contact")
 def contact():
@@ -116,6 +125,8 @@ def submit_user():
 
     if request.method == "GET":
         return render_template("add_user.html")
+
+
 @app.route('/update', methods=['GET', 'POST'])
 @app.route("/update/<name>", methods=["GET", "POST"])
 def update_user(name=None):
