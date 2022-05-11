@@ -226,6 +226,18 @@ def admin():
     if request.method == "GET":
         return password_prompt("Enter password for Admin page")
 
+@app.route("/urmom")
+def urmom():
+    return render_template('person.html', data={"Name": "Your Mother", "About": "Its ur mom dont ask me", "Roles": ["Bitch", "Whore"], "Socials": []})
+
+@app.route("/logs")
+def logs():
+    data = []
+    with open("/root/saberfilmsapp/logs/gunicorn.access.log", "r") as f:
+        for line in f.readlines():
+            if not "uptimerobot" in line.lower():
+                data.append(line)
+    return "<br>".join(data)
 
 @app.errorhandler(404)
 def page_not_found_404(e):

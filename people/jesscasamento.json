@@ -1,10 +1,1 @@
-{
-    "Name": "Jess Casamento",
-    "Roles": ["Still Photographer"],
-    "About": "Professional Photographer living in the Hudson Valley. I specialize in Fine Art portraits and event photography. ",
-    "Picture": "",
-    "Age": 70,
-    "link": "jesscasamento",
-    "socials": ["https://instagram.com/jesscasamentophotography"],
-    "importance": 2
-} 
+{"Name": "Jess Casamento", "Age": "70", "Roles": ["Still Photographer", "Producer", "Director of Transportation"], "Picture": "https://www.instagram.com/p/CavLDTNvwvM/?igshid=YmMyMTA2M2Y=", "socials": ["https://instagram.com/jesscasamentophotography"], "About": "Professional Photographer living in the Hudson Valley. I specialize in Fine Art portraits and event photography. ", "password": "", "link": "jesscasamento"}

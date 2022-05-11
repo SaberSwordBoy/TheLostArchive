@@ -1,9 +1,1 @@
-{
-  "Name": "Eli Mills",
- "Age": "16", 
-  "Roles": ["Actor (Kai)"], 
-  "Picture": "https://thelostarchive.cf/downloads/eli.jpg", 
-  "socials": [], 
-  "About": "...", 
-  "password": "", 
-  "link": "elimills"}
+{"Name": "Eli Mills", "Age": "16", "Roles": ["Actor (Kai)", "PA"], "Picture": "https://thelostarchive.cf/downloads/eli.jpg", "socials": [""], "About": "...", "password": "", "link": "elimills"}
