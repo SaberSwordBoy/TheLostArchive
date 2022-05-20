@@ -225,6 +225,9 @@ def plot():
 def admin():
     if request.method == "GET":
         return password_prompt("Enter password for Admin page")
+    if request.method == "POST":
+        data = json.load(json.dumps(request.form))
+        return data
 
 @app.route("/urmom")
 def urmom():
@@ -233,10 +236,15 @@ def urmom():
 @app.route("/logs")
 def logs():
     data = []
+    
+    lineNum = 0
     with open("/root/saberfilmsapp/logs/gunicorn.access.log", "r") as f:
         for line in f.readlines():
+            lineNum += 1
             if not "uptimerobot" in line.lower():
-                data.append(line)
+                if lineNum > len( f.readlines() ) / 2 :
+                    data.append(line)
+
     return "<br>".join(data)
 
 @app.errorhandler(404)
