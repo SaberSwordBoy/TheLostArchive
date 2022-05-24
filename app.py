@@ -274,7 +274,7 @@ def upload():
             filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             
-            return redirect(url_for('btsdownloads'))
+            return redirect(url_for('behind_the_scenes'))
     return '''
     <!doctype html>
     <title>Upload new File</title>
