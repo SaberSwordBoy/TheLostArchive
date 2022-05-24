@@ -4,7 +4,7 @@ import os
 import smtplib
 from datetime import datetime
 
-from flask import Flask, redirect, render_template, request, send_file, url_for, flash
+from flask import Flask, flash, redirect, render_template, request, send_file, url_for
 from werkzeug.utils import secure_filename
 
 config = configparser.ConfigParser()
@@ -13,10 +13,10 @@ config.read("/root/saberfilmsapp/config/config.ini")
 HOST = config.get("Server", "ip")
 PORT = config.get("Server", "port")
 ACCESSLOG = config.get("Server", "logfile")
-PASSWORDS = config.get("Server", "admin_password").split(',')
+PASSWORDS = config.get("Server", "admin_password").split(",")
 
-UPLOAD_FOLDER = '/root/saberfilmsapp/bts/'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+UPLOAD_FOLDER = "/root/saberfilmsapp/bts/"
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 app = Flask(__name__)
 
@@ -42,8 +42,8 @@ def password_prompt(message):
 
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return "." in filename and filename.rsplit(
+        ".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/")
@@ -94,13 +94,18 @@ def behind_the_scenes():
     for _, _, files in os.walk("bts"):
 
         for file in sort_files(files):
-            images.append({"filename": file, "url": f"https://thelostarchive.cf/bts/{file}"})
-                
-    return render_template("bts.html",images=images)
+            images.append({
+                "filename": file,
+                "url": f"https://thelostarchive.cf/bts/{file}"
+            })
+
+    return render_template("bts.html", images=images)
+
 
 @app.route("/bts/<name>")
 def btsdownloads(name):
-    return send_file(f'/root/saberfilmsapp/bts/{name}')
+    return send_file(f"/root/saberfilmsapp/bts/{name}")
+
 
 @app.route("/contact")
 def contact():
@@ -135,7 +140,7 @@ def submit_user():
         return render_template("add_user.html")
 
 
-@app.route('/update', methods=['GET', 'POST'])
+@app.route("/update", methods=["GET", "POST"])
 @app.route("/update/<name>", methods=["GET", "POST"])
 def update_user(name=None):
     if request.method == "POST":
@@ -148,7 +153,7 @@ def update_user(name=None):
         data = json.loads(str_json)
 
         data["link"] = "".join(data["Name"].split(" ")).lower()
-        if data.get('socials') is not None: 
+        if data.get("socials") is not None:
             data["socials"] = data["socials"].split(",")
         data["Roles"] = data["Roles"].split(",")
         data["password"] = ""
@@ -157,7 +162,7 @@ def update_user(name=None):
             json.dump(data, file)
 
         return redirect("/people")
-    
+
     if request.method == "GET":
 
         try:
@@ -172,7 +177,8 @@ def update_user(name=None):
                 "Roles": ["Error"],
             }
 
-        return render_template('edituser.html', person=data)
+        return render_template("edituser.html", person=data)
+
 
 @app.route("/email", methods=["GET", "POST"])
 def send_email():
@@ -219,12 +225,14 @@ def downloads(name):
         return send_file(f"/root/saberfilmsapp/downloads/{name}",
                          attachment_filename="TLA_Image.jpg")
     if "ttf" in name:
-        return send_file(f"/root/saberfilmsapp/downloads/{name}", as_attachment=False)
+        return send_file(f"/root/saberfilmsapp/downloads/{name}",
+                         as_attachment=False)
 
     return send_file(f"/root/saberfilmsapp/downloads/{name}",
                      as_attachment=True)
 
-@app.route('/plot')
+
+@app.route("/plot")
 def plot():
     return render_template("plot.html")
 
@@ -237,42 +245,53 @@ def admin():
         data = json.load(json.dumps(request.form))
         return data
 
+
 @app.route("/urmom")
 def urmom():
-    return render_template('person.html', data={"Name": "Your Mother", "About": "Its ur mom dont ask me", "Roles": ["Bitch", "Whore"], "Socials": []})
+    return render_template(
+        "person.html",
+        data={
+            "Name": "Your Mother",
+            "About": "Its ur mom dont ask me",
+            "Roles": ["Bitch", "Whore"],
+            "Socials": [],
+        },
+    )
+
 
 @app.route("/logs")
 def logs():
     data = []
-    
+
     lineNum = 0
     with open("/root/saberfilmsapp/logs/gunicorn.access.log", "r") as f:
         for line in f.readlines():
             lineNum += 1
             if not "uptimerobot" in line.lower():
-                if lineNum > len( f.readlines() ) / 2 :
+                if lineNum > len(f.readlines()) / 2:
                     data.append(line)
 
     return "<br>".join(data)
 
-@app.route('/upload')
+
+@app.route("/upload")
 def upload():
-    if request.method == 'POST':
+    if request.method == "POST":
         # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
+        if "file" not in request.files:
+            flash("No file part")
             return redirect(request.url)
-        file = request.files['file']
+        file = request.files["file"]
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
-        if file.filename == '':
-            flash('No selected file')
+        if file.filename == "":
+            flash("No selected file")
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
-    return '''
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            return redirect(url_for("download_file", name=filename))
+    return """
     <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
@@ -280,7 +299,8 @@ def upload():
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
-    '''
+    """
+
 
 @app.errorhandler(404)
 def page_not_found_404(e):
