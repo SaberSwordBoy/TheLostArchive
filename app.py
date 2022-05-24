@@ -3,9 +3,9 @@ import json
 import os
 import smtplib
 from datetime import datetime
-from ipaddress import ip_address
 
-from flask import Flask, redirect, render_template, request, send_file
+from flask import Flask, redirect, render_template, request, send_file, url_for, flash
+from werkzeug.utils import secure_filename
 
 config = configparser.ConfigParser()
 config.read("/root/saberfilmsapp/config/config.ini")
@@ -14,6 +14,9 @@ HOST = config.get("Server", "ip")
 PORT = config.get("Server", "port")
 ACCESSLOG = config.get("Server", "logfile")
 PASSWORDS = config.get("Server", "admin_password").split(',')
+
+UPLOAD_FOLDER = '/root/saberfilmsapp/bts/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 
@@ -36,6 +39,11 @@ def password_prompt(message):
                   <input type="password" id="password" name="password" value=""><br>
                   <input type="submit" value="Submit">
                 </form>"""
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/")
@@ -246,6 +254,33 @@ def logs():
                     data.append(line)
 
     return "<br>".join(data)
+
+@app.route('/upload')
+def upload():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('download_file', name=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+    '''
 
 @app.errorhandler(404)
 def page_not_found_404(e):
