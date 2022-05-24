@@ -273,7 +273,8 @@ def upload():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            return redirect(url_for('download_file', name=filename))
+            
+            return redirect(url_for('bts'))
     return '''
     <!doctype html>
     <title>Upload new File</title>
