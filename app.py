@@ -255,7 +255,7 @@ def logs():
 
     return "<br>".join(data)
 
-@app.route('/upload')
+@app.route('/upload', methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
         # check if the post request has the file part
